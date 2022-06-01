@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import ThemeContext from "../context/Theme";
 
-const Input = () => {
+const Input = ({ fetchTodo }) => {
   const [title, setTitle] = useState("");
-
+  const { theme } = useContext(ThemeContext);
   function handleChange(e) {
     setTitle(e.target.value);
   }
@@ -19,11 +20,12 @@ const Input = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log("Success:", data);
+        fetchTodo();
       })
       .catch((error) => {
         console.error("Error:", error);
       });
-      setTitle("")
+    setTitle("");
   }
   return (
     <div className="w-25 mx-auto my-3">
@@ -35,7 +37,7 @@ const Input = () => {
           placeholder="Enter Todo"
           onChange={handleChange}
         />
-        <button className="btn btn-primary" type="submit">
+        <button className={`btn btn-${theme} border`} type="submit">
           Add
         </button>
       </form>

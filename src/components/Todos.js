@@ -1,14 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Todo from "./Todo";
 
-const Todos = () => {
-  const [todos, setTodos] = useState([]);
-
-  function fetchTodo() {
-    fetch("http://localhost:3004/todos")
-      .then((res) => res.json())
-      .then((res) => setTodos(res));
-  }
+const Todos = ({ fetchTodo, todos, setTodos }) => {
   useEffect(() => {
     fetchTodo();
   }, []);
@@ -18,7 +11,7 @@ const Todos = () => {
       method: "DELETE",
     })
       .then((res) => res.json()) // or res.json()
-      .then((res) => console.log(res));
+      .then((res) => fetchTodo());
   }
   return (
     <div className="w-25 mx-auto my-3">

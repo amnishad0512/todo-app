@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
+import ThemeContext from "../context/Theme";
 
 const Navbar = () => {
+  const { theme, toggleTheme } = useContext(ThemeContext);
+  console.log(toggleTheme);
   return (
-    <nav className="navbar navbar-expand-lg bg-light">
+    <nav className={`navbar navbar-expand-lg bg-${theme}`}>
       <div className="container-fluid">
         <a className="navbar-brand" href="#">
           My Todos
@@ -20,17 +23,9 @@ const Navbar = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mx-auto mb-2 mb-lg-0"></ul>
-          <form className="d-flex" role="search">
-            <input
-              className="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button className="btn btn-outline-success" type="submit">
-              Search
-            </button>
-          </form>
+          <button className={`btn btn-${theme} border`} onClick={toggleTheme}>
+            Change Theme
+          </button>
         </div>
       </div>
     </nav>
