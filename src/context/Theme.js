@@ -15,7 +15,9 @@ export const Theme = (props) => {
       setTheme("primary");
     } else if (theme === "primary") {
       setTheme("success");
-    } else {
+    } else if(theme==="success") {
+      setTheme("secondary");
+    }else{
       setTheme("light");
     }
   }

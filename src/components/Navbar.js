@@ -3,13 +3,12 @@ import ThemeContext from "../context/Theme";
 
 const Navbar = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
-  console.log(toggleTheme);
   return (
     <nav className={`navbar navbar-expand-lg bg-${theme}`}>
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
-          My Todos
-        </a>
+      <button className={`btn btn-${theme} disabled`} onClick={toggleTheme}>
+            My Todos
+          </button>
         <button
           className="navbar-toggler"
           type="button"
